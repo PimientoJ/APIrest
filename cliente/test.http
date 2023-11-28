@@ -1,0 +1,37 @@
+GET http://localhost:3500/api/seira/datosUsuario
+//Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTY0OWY1NmE4MGFmZGE4Y2U5MGE4NDgiLCJjb3JyZW8iOiJjdWMxNjEzMjA0NzVAbWFpbC51ZGVzLmVkdS5jbyIsImlhdCI6MTcwMTEzMDE0NywiZXhwIjoxNzAxMjE2NTQ3fQ.v_b8VravulbMrcNU9v2pZaQmZU3lC9nvkMVTJQ-p2gU
+
+###
+POST http://localhost:3500/api/seira/registarUsuario
+Content-Type: application/json
+
+{
+    "nombre": "Jose Angarita",
+    "codigo": "13162050",
+    "rol": "Juez",
+    "correo": "cuc16132050@mail.udes.edu.co",
+    "celular": "3505161422",
+    "pass": "123456"
+
+}
+
+###
+PUT http://localhost:3500/api/seira/actualizarUsuario/6564161817dbd7333fbfd1bf
+Content-Type: application/json
+
+{
+    "pass": "789"
+}
+
+###
+DELETE http://localhost:3500/api/seira/eliminarUsuario/6564161817dbd7333fbfd1bf
+
+###
+POST http://localhost:3500/api/seira/loginUsuario
+Content-Type: application/json
+
+{
+    "correo":"cuc161320475@mail.udes.edu.co",
+    "pass":"12345"
+
+}
