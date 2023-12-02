@@ -8,5 +8,6 @@ routerUsers.post("/registarUsuario", ctrUser.agregarUsuario);
 routerUsers.put("/actualizarUsuario/:id", ctrUser.actualizarUsuario);
 routerUsers.delete("/eliminarUsuario/:id", ctrUser.eliminarUsuario);
 routerUsers.post("/loginUsuario", ctrUser.logginUsuario);
+routerUsers.get("/datosUsuarioLogueado", autorizarUsuario, ctrUser.obtenerDatosUsuarioLogueado);
 
 module.exports = routerUsers;
