@@ -1,5 +1,5 @@
 GET http://localhost:3500/api/seira/datosUsuario
-//Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTY0OWY1NmE4MGFmZGE4Y2U5MGE4NDgiLCJjb3JyZW8iOiJjdWMxNjEzMjA0NzVAbWFpbC51ZGVzLmVkdS5jbyIsImlhdCI6MTcwMTEzMDE0NywiZXhwIjoxNzAxMjE2NTQ3fQ.v_b8VravulbMrcNU9v2pZaQmZU3lC9nvkMVTJQ-p2gU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTY0OWY1NmE4MGFmZGE4Y2U5MGE4NDgiLCJjb3JyZW8iOiJjdWMxNjEzMjA0NzVAbWFpbC51ZGVzLmVkdS5jbyIsImlhdCI6MTcwMTI3NjY5MiwiZXhwIjoxNzAxMzYzMDkyfQ.cqmCJSSVwg73meOmllNHAsxl2lMioVZJABBG_jN7kGY
 
 ###
 POST http://localhost:3500/api/seira/registarUsuario
@@ -20,7 +20,7 @@ PUT http://localhost:3500/api/seira/actualizarUsuario/6564161817dbd7333fbfd1bf
 Content-Type: application/json
 
 {
-    "pass": "789"
+     "correo":"cuc"
 }
 
 ###
@@ -31,7 +31,11 @@ POST http://localhost:3500/api/seira/loginUsuario
 Content-Type: application/json
 
 {
-    "correo":"cuc161320475@mail.udes.edu.co",
-    "pass":"12345"
+    "correo":"cuc",
+    "pass":"123456"
 
 }
+
+###
+GET http://localhost:3500/api/seira/datosUsuarioLogueado
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTY0OWY1NmE4MGFmZGE4Y2U5MGE4NDgiLCJjb3JyZW8iOiJjdWMiLCJpYXQiOjE3MDEzMjczNDgsImV4cCI6MTcwMTQxMzc0OH0.4eqU2hGAwvN-QtZSS40WY_Cb1PhR0bz0c0wEHdspkE8

@@ -61,10 +61,10 @@ exports.eliminarUsuario = async(req, res) => {
     }
 
 };
-//Inision de sesion de usuario
+//Inicio de sesion de usuario
 exports.logginUsuario = async(req, res) => {
     try {
-        const { correo, pass } = req.body;
+        const { correo, pass, rol } = req.body;
         console.log(req.body);
 
         if (correo && pass) {
@@ -92,19 +92,18 @@ exports.logginUsuario = async(req, res) => {
     } catch (error) {
         res.json(error);
     }
-}
-exports.autenticacion = async(req, res, next) => {
-        try {
-            const user = await Usuario.find();
-            if (!user) {
-                return res.json({ msj: 'Ningun usuario encontrado' });
-            }
-            return res.json({ user: user })
-        } catch (error) {
-            return next(error);
-        }
+};
+//Datos del usuario Logueado
+exports.obtenerDatosUsuarioLogueado = async(req, res) => {
+    try {
+        const usuario = await Usuario.find({ estado: true });
+        res.json(usuario);
+    } catch (error) {
+        res.json(error);
     }
-    //Cambiar contraseña
+};
+
+//Cambiar contraseña
 exports.actualizarContraseña = async(req, res) => {
     try {
         const id = req.params.id;

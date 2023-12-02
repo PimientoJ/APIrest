@@ -1,0 +1,16 @@
+###
+POST http://localhost:3500/api/registarCalendario
+Content-Type: application/json
+
+{
+    "periodo": "B",
+    "año": 2023,
+    "proceso": "Sustentación",
+    "fechaEntrega": "2023/11/25",
+    "fechaSesioncomite": "2023/11/26",
+    "fechaResultado": "2023/12/24"
+}
+
+###
+GET http://localhost:3500/api/datosCalendario
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTY0YjkyZDc5ZDIxZGI2YmZhMTM3NzIiLCJjb3JyZW8iOiJjdWMxNjEzMjA0OEBtYWlsLnVkZXMuZWR1LmNvIiwiaWF0IjoxNzAxMzg3MzM3LCJleHAiOjE3MDE0NzM3Mzd9.lj9TvIZReIHzBh5yu8aO2akAkiFrDvUc4U6tHsmYpiw
