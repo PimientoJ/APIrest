@@ -5,19 +5,20 @@ const UsuarioSchema = new Schema({
         required: true
     },
     codigo: {
-        type: String,
+        type: Number,
         required: true
     },
-    rol: {
-        type: String,
-        required: true
-    },
+    rol: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Rol',
+        autopopulate: true
+    }],
     correo: {
         type: String,
         required: true
     },
     celular: {
-        type: String,
+        type: Number,
         required: true
     },
     pass: {
@@ -30,5 +31,5 @@ const UsuarioSchema = new Schema({
     }
 });
 
-
+UsuarioSchema.plugin(require('mongoose-autopopulate'));
 module.exports = model("Usuario", UsuarioSchema);

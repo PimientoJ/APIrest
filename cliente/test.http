@@ -1,18 +1,29 @@
+//--------------------Usuario-----------------------
 GET http://localhost:3500/api/seira/datosUsuario
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTY0OWY1NmE4MGFmZGE4Y2U5MGE4NDgiLCJjb3JyZW8iOiJjdWMxNjEzMjA0NzVAbWFpbC51ZGVzLmVkdS5jbyIsImlhdCI6MTcwMTI3NjY5MiwiZXhwIjoxNzAxMzYzMDkyfQ.cqmCJSSVwg73meOmllNHAsxl2lMioVZJABBG_jN7kGY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTdiNzNmOTE3NWNkZWUyZjZlNTEyODIiLCJjb3JyZW8iOiJlc3R1ZGlhbnRlIiwiaWF0IjoxNzAyNTk1NzgzLCJleHAiOjE3MDI2ODIxODN9.-wTMXvav7WA2pgndHv9MrY0txHKw9dUEVBGH1YHJ55s
+
+###
+GET http://localhost:3500/api/seira/datosRolUsuario/657b73f9175cdee2f6e51282/656ab1832166f185397306a9
 
 ###
 POST http://localhost:3500/api/seira/registarUsuario
 Content-Type: application/json
 
 {
-    "nombre": "Jose Angarita",
-    "codigo": "13162050",
-    "rol": "Juez",
-    "correo": "cuc16132050@mail.udes.edu.co",
-    "celular": "3505161422",
+    "nombre": "Yecid Pimiento",
+    "codigo": "16132046",
+    "correo": "yecid",
+    "celular": "11111111",
     "pass": "123456"
 
+}
+
+###
+PUT http://localhost:3500/api/seira/registarRolUsuario/65a0633943a89338c0d7aa6c
+Content-Type: application/json
+
+{
+     "rol":"656ab1832166f185397306a9"
 }
 
 ###
@@ -37,5 +48,11 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3500/api/seira/datosUsuarioLogueado
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTY0OWY1NmE4MGFmZGE4Y2U5MGE4NDgiLCJjb3JyZW8iOiJjdWMiLCJpYXQiOjE3MDEzMjczNDgsImV4cCI6MTcwMTQxMzc0OH0.4eqU2hGAwvN-QtZSS40WY_Cb1PhR0bz0c0wEHdspkE8
+GET http://localhost:3500/api/seira/datosUsuarioLogueado/65649f56a80afda8ce90a848
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTY0OWY1NmE4MGFmZGE4Y2U5MGE4NDgiLCJjb3JyZW8iOiJjdWMiLCJpYXQiOjE3MDE0ODg1MzMsImV4cCI6MTcwMTU3NDkzM30.Nofem44kLpbgn93rdh2ucE5_szqkpUqxTvF_rrmyQ7g
+  
+
+  //--------------------Rol-----------------------
+
+  ###
+  GET http://localhost:3500/api/datosRoles

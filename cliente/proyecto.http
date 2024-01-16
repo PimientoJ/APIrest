@@ -1,0 +1,48 @@
+//-----------Proyecto--------------------------------
+GET http://localhost:3500/api/datosproyecto
+
+###
+POST http://localhost:3500/api/registarProyecto
+Content-Type: application/json
+
+{
+    "titulo": "semis",
+    "fecha": "2023/12/02",
+    "proceso": "Propuesta de grado",
+    "estadoProceso": "Pendiente"
+}
+###
+PUT http://localhost:3500/api/registarUsuarioProyecto/65a05f6843a89338c0d7aa24
+Content-Type: application/json
+
+{
+     "estudiante":"65a0633943a89338c0d7aa6c"
+}
+
+###
+PUT http://localhost:3500/api/actualizarProyecto/65a05a3c3ac8f51e81e18920
+Content-Type: application/json
+
+{
+     "director":"Marieth Perpinan",
+     "codirecto": "Jhonathan"
+}
+
+###
+DELETE http://localhost:3500/api/eliminarProyecto/6574bb3cac421660b44bc1e6
+
+//----------------- Estudiante----------------------------------------------------
+
+###
+GET http://localhost:3500/api/datosEstudiante/6574bb3cac421660b44bc1e6
+
+###
+POST http://localhost:3500/api/agregarEstudiante/6574bb3cac421660b44bc1e6
+Content-Type: application/json
+
+{
+    "nombre": "Sandro Carvajal"
+}
+
+###
+GET http://localhost:3500/api/datosNombreUser/Natalia

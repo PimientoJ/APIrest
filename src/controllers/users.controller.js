@@ -3,19 +3,42 @@ const jwt = require('jsonwebtoken');
 const Usuario = require('../Models/Usuario');
 
 
+
 //Metodo de obtener los datos para ingreso al sistema
 exports.obtenerDatosUsuario = async(req, res) => {
-    try {
-        const usuario = await Usuario.find({ estado: true });
-        res.json(usuario);
-    } catch (error) {
-        res.json(error);
+        try {
+            const usuario = await Usuario.find({ estado: true });
+            res.json(usuario);
+        } catch (error) {
+            res.json(error);
+        }
     }
-};
-//Método para enviar registros
+    //Método para mostrar el rol de cada usuario
+exports.obtenerRolUsuario = async(req, res) => {
+        try {
+            if (req.params.idUser && req.params.idRol) {
+                const idUser = req.params.idUser;
+                const idRol = req.params.idRol;
+                console.log(idUser, "&", idRol);
+                const usuario = await Usuario.findById(idUser);
+
+                for (let index = 0; index < usuario.rol.length; index++) {
+                    if (usuario.rol[index]._id == idRol) {
+                        res.json(usuario.rol[index]);
+                    }
+                }
+            } else {
+                res.status(400).json({ error });
+            }
+
+        } catch (error) {
+            res.status(500).json({ error });
+        }
+    }
+    //Método para enviar registros
 exports.agregarUsuario = async(req, res) => {
     try {
-        const { nombre, codigo, rol, correo, celular, pass } = req.body;
+        const { nombre, codigo, correo, celular, pass } = req.body;
         console.log(req.body);
 
         const userExists = await Usuario.findOne({ correo: req.body.correo });
@@ -36,6 +59,19 @@ exports.agregarUsuario = async(req, res) => {
         res.json(error);
     }
 
+};
+exports.agregarRolUsuario = async(req, res) => {
+    try {
+        const id = req.params.id;
+        const { rol } = req.body;
+        console.log("Rol que recibe:", rol);
+        const aggRol = await Usuario.findByIdAndUpdate(id, { $push: { rol: rol } });
+        console.log("Rol que recibe:", aggRol);
+        //res.send(`${aggRol.name} updated`);
+        res.json({ msj: "Rol del usuario agregado con exito" });
+    } catch (error) {
+        res.json(error);
+    }
 };
 //Metodo para actualizar los datos
 exports.actualizarUsuario = async(req, res) => {
@@ -82,7 +118,7 @@ exports.logginUsuario = async(req, res) => {
                     }
                     const palabras = "clavesecreta"
                     const token = jwt.sign({ _id, correo }, palabras, opt);
-                    res.json({ "token": token, success: true, msj: 'Inicio de sesion exitoso' });
+                    res.json({ "token": token, success: true, _id, msj: 'Inicio de sesion exitoso' });
 
                 } else {
                     res.json({ token: null, success: false, msj: "Usuario o contraseña incorrecta" });
@@ -96,7 +132,8 @@ exports.logginUsuario = async(req, res) => {
 //Datos del usuario Logueado
 exports.obtenerDatosUsuarioLogueado = async(req, res) => {
     try {
-        const usuario = await Usuario.find({ estado: true });
+        const id = req.params.id;
+        const usuario = await Usuario.findById(id);
         res.json(usuario);
     } catch (error) {
         res.json(error);
@@ -120,5 +157,23 @@ exports.actualizarContraseña = async(req, res) => {
         }
     } catch (error) {
 
+    }
+}
+
+//Metodo de obtener el nombre del usuario ya previamente registrado
+exports.obtenerNombresUsuario = async(req, res) => {
+    try {
+        if (req.params.nombre) {
+            console.log("nombreEstudianteRecibeParametro:", req.params.nombre)
+            const nombreUsuario = req.params.nombre;
+            console.log("nombreEstudiante:", nombreUsuario)
+            const usuario = await Usuario.find({ nombre: nombreUsuario, estado: true, rol: Estudiante });
+            console.log("nombreEstudiante:", usuario)
+            res.json(usuario);
+        } else {
+            res.json("No se encuentra el nombre registrado");
+        }
+    } catch (error) {
+        res.json(error);
     }
 }

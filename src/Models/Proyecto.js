@@ -7,23 +7,45 @@ const ProyectoSchema = new Schema({
         required: true
     },
     fecha: {
-        type: String,
+        type: Date,
         required: true
     },
-    estudiante: {
-        type: String,
-        required: true
-    },
-    jurado: {
-        type: String,
-        required: true
-    },
+    estudiante: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Usuario',
+        autopopulate: true
+    }],
+    jurado: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Usuario',
+        autopopulate: true
+    }],
     director: {
-        type: String,
-        required: true
+        type: String
     },
     codirecto: {
+        type: String
+    },
+    proceso: {
         type: String,
+        required: true
+    },
+    lineaInvestigación: {
+        type: String,
+    },
+    semilleroInvestigacion: {
+        type: String
+    },
+    estadoProceso: {
+        type: String,
+        required: true
+    },
+    nombreDocumento: {
+        type: String,
+        required: true
+    },
+    nota: {
+        type: Number,
         required: true
     },
     estado: {
@@ -32,5 +54,5 @@ const ProyectoSchema = new Schema({
     },
 });
 
-
+ProyectoSchema.plugin(require('mongoose-autopopulate'));
 module.exports = model("Proyecto", ProyectoSchema);

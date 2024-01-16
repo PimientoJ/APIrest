@@ -5,26 +5,16 @@ const CalendarioSchema = new Schema({
         type: String,
         required: true
     },
-    año: {
+    year: {
         type: Number,
         required: true
     },
-    proceso: {
-        type: String,
-        required: true
-    },
-    fechaEntrega: {
-        type: Date,
-        required: true
-    },
-    fechaSesioncomite: {
-        type: Date,
-        required: true
-    },
-    fechaResultado: {
-        type: Date,
-        required: true
-    },
+    proceso: [{
+        nombre: String,
+        fechaEntrega: Date,
+        fechaSesioncomite: Date,
+        fechaResultado: Date
+    }],
     estado: {
         type: Boolean,
         default: true

@@ -11,24 +11,33 @@ exports.obtenerDatosCalendario = async(req, res) => {
         res.json(error);
     }
 };
-
-
 //Métodos de administrador
 exports.agregarCalendario = async(req, res) => {
     try {
-        console.log("hols amigos");
-        const { periodo, año, proceso, fechaEntrega, fechaSesioncomite, fechaResultado } = req.body;
+        const { periodo, año, proceso } = req.body;
         console.log(req.body);
 
         const nuevoDatoCalendario = new Calendario(req.body);
         console.log(nuevoDatoCalendario);
         await nuevoDatoCalendario.save(); //Guarda en la base de datos
-        res.json({ success: true, msj: 'Datos registrado exitosamente' })
+        res.json({ success: true, msj: 'Datos registrado exitosamente' });
 
     } catch (error) {
-        res.json("Holaa");
         res.json(error);
     }
+};
+//Metodo para agregar los procesos
+exports.AgregarDatoCalendarioProceso = async(req, res) => {
+    try {
+        const id = req.params.id;
+        const { proceso } = req.body;
+        console.log("Procesos:", proceso);
+        const aggProceso = await Calendario.findByIdAndUpdate(id, { $push: { proceso: proceso } });
+        res.json({ msj: "Datos recibidos del proceso con exito" });
+    } catch (error) {
+        res.json(error);
+    }
+
 };
 //Metodo para actualizar los datos
 exports.actualizarDatoCalendario = async(req, res) => {

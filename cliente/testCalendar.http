@@ -1,16 +1,54 @@
+//----------------------------Calendario------------------------
 ###
-POST http://localhost:3500/api/registarCalendario
+PUT http://localhost:3500/api/actualizarCalendario/656ea7177c0dde8fe2c27360
 Content-Type: application/json
 
 {
-    "periodo": "B",
-    "año": 2023,
-    "proceso": "Sustentación",
-    "fechaEntrega": "2023/11/25",
-    "fechaSesioncomite": "2023/11/26",
-    "fechaResultado": "2023/12/24"
+    "periodo": "A",
+    "year": 2023   
 }
 
 ###
 GET http://localhost:3500/api/datosCalendario
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTY0YjkyZDc5ZDIxZGI2YmZhMTM3NzIiLCJjb3JyZW8iOiJjdWMxNjEzMjA0OEBtYWlsLnVkZXMuZWR1LmNvIiwiaWF0IjoxNzAxMzg3MzM3LCJleHAiOjE3MDE0NzM3Mzd9.lj9TvIZReIHzBh5yu8aO2akAkiFrDvUc4U6tHsmYpiw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTdjNjk3OWY2MGNhNTAzNDljOTNhZDciLCJjb3JyZW8iOiJhZG1pbiIsImlhdCI6MTcwNDEyMzYxNywiZXhwIjoxNzA0MjEwMDE3fQ.Bqo3lAqF8ZCUTjCHiD7t2SlWP4EVDNVy_kxu0YS7f58
+
+---//----------------------------Procesos------------------------
+###
+GET http://localhost:3500/api/datosProcesos/656ea7177c0dde8fe2c27360
+
+###
+POST http://localhost:3500/api/agregarProcesos/656ea7177c0dde8fe2c27360
+Content-Type: application/json
+
+{
+    "nombre": "Propuesta de trabajo grado",
+    "fechaEntrega": "2024-01-05",
+    "fechaSesioncomite": "2024-01-18",
+    "fechaResultado": "2024-01-10"
+}    
+
+###
+DELETE http://localhost:3500/api/eliminarProceso/656ea7177c0dde8fe2c27360/65947384aa7272d328ee2740
+
+###
+GET http://localhost:3500/api/datoDelProceso/656ea7177c0dde8fe2c27360/65971c22e0d110e84241ffee
+
+###
+PUT  http://localhost:3500/api/actualizarProcesos/656ea7177c0dde8fe2c27360/65971b84e0d110e84241ffc8
+Content-Type: application/json
+
+{
+   "fechaSesioncomite": "2023/12/06"
+}
+
+
+//----------------------------Roles----------------------
+###
+POST http://localhost:3500/api/registarRol
+Content-Type: application/json
+{
+    "nombre": "Administrador"
+}
+
+###
+GET http://localhost:3500/api/datosRoles

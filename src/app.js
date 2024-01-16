@@ -2,8 +2,13 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const conexionDB = require("./db.conexion");
+const fileupdates = require("express-fileupload");
 const routerUser = require("./routes/users.routes");
 const routerCalendar = require("./routes/calendars.routes");
+const routerRol = require("./routes/rols.routes");
+const routerProceso = require("./routes/procesos.routes");
+const routerEstudiante = require("./routes/estudiantes.routes");
+const routerProyecto = require("./routes/proyectos.routes");
 
 //Configure los archivos dotenv
 
@@ -19,19 +24,22 @@ app.set("port", process.env.PORT || 3500);
 //middleware
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(fileupdates({
+    createParentPath: true
+}));
 app.use(cors({
     origin: ['http://localhost:4200'],
 
 }));
-/*app.use = cors((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Authorization");  
-    next();
-});*/
+
 
 //Llamado de rutas
 app.use(express.static("public"));
 app.use("/api/seira", routerUser);
 app.use("/api", routerCalendar);
+app.use("/api", routerRol);
+app.use("/api", routerProceso);
+app.use("/api", routerEstudiante);
+app.use("/api", routerProyecto);
 
 module.exports = app;
