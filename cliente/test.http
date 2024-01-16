@@ -31,7 +31,7 @@ PUT http://localhost:3500/api/seira/actualizarUsuario/6564161817dbd7333fbfd1bf
 Content-Type: application/json
 
 {
-     "correo":"cuc"
+     "correo":"correo"
 }
 
 ###
