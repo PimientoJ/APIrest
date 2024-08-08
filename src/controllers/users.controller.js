@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Usuario = require('../Models/Usuario');
+const Rol = require('../Models/Rol');
 
 
 
@@ -8,6 +9,19 @@ const Usuario = require('../Models/Usuario');
 exports.obtenerDatosUsuario = async(req, res) => {
         try {
             const usuario = await Usuario.find({ estado: true });
+            res.json(usuario);
+        } catch (error) {
+            res.json(error);
+        }
+    }
+    //Metodo de obtener los datos para ingreso al sistema 2
+exports.obtenerDatosUsuario2 = async(req, res) => {
+        try {
+            const usuario = await Usuario.find({ estado: true }).populate({
+                path: 'rol',
+                select: 'nombre'
+            });
+
             res.json(usuario);
         } catch (error) {
             res.json(error);
@@ -62,11 +76,12 @@ exports.agregarUsuario = async(req, res) => {
 };
 exports.agregarRolUsuario = async(req, res) => {
     try {
+        console.log("cuerpo:", req.body);
         const id = req.params.id;
         const { rol } = req.body;
+        console.log("Rol usuario:", id);
         console.log("Rol que recibe:", rol);
         const aggRol = await Usuario.findByIdAndUpdate(id, { $push: { rol: rol } });
-        console.log("Rol que recibe:", aggRol);
         //res.send(`${aggRol.name} updated`);
         res.json({ msj: "Rol del usuario agregado con exito" });
     } catch (error) {
@@ -79,7 +94,7 @@ exports.actualizarUsuario = async(req, res) => {
         const id = req.params.id;
         const data = req.body;
         await Usuario.findByIdAndUpdate(id, data);
-        res.json({ msj: "Datos recibidos para actualizar" });
+        res.json({ success: true, msj: "Datos recibidos para actualizar" });
     } catch (error) {
         res.json(error);
     }
@@ -144,19 +159,29 @@ exports.obtenerDatosUsuarioLogueado = async(req, res) => {
 exports.actualizarContraseña = async(req, res) => {
     try {
         const id = req.params.id;
-        const { pass } = req.body;
-        await Usuario.findByIdAndUpdate(id, pass);
-        if (pass == confirmacionPass) {
-            //Encriptamos la clave
-            const hashed = await bcrypt.hash(pass, saltRound);
-            console.log(hashed);
-            res.json({ isOk: true, msj: "Contraseña modificada correctamente" });
-        } else {
-            //Envia msj de error
-            res.json({ isOk: false, msj: "La contraseña y la confirmacion son incorrectas" });
-        }
-    } catch (error) {
+        const pass = req.body.pass;
 
+        const salt = await bcrypt.genSalt(10);
+        console.log("salt", salt);
+        const hashedPass = await bcrypt.hash(req.body.pass, salt);
+        req.body.pass = hashedPass;
+
+        await Usuario.findByIdAndUpdate(id, req.body);
+        res.json({ isOk: true, msj: "Contraseña modificada correctamente" });
+
+        /*  console.log("Datos que entran:", id, pass);
+          const contraseña = await Usuario.findByIdAndUpdate(id, pass);
+          if (contraseña) {
+              //Encriptamos la clave
+              const hashed = await bcrypt.hash(pass, saltRound);
+              console.log(hashed);
+              res.json({ isOk: true, msj: "Contraseña modificada correctamente" });
+          } else {
+              //Envia msj de error
+              res.json({ isOk: false, msj: "La contraseña y la confirmacion son incorrectas" });
+          }*/
+    } catch (error) {
+        res.json({ isOk: false, msj: "No se actualizo la contraseña" });
     }
 }
 
@@ -173,6 +198,48 @@ exports.obtenerNombresUsuario = async(req, res) => {
         } else {
             res.json("No se encuentra el nombre registrado");
         }
+    } catch (error) {
+        res.json(error);
+    }
+}
+
+exports.obtenerUsuariosPorRolJurado = async(req, res) => {
+    try {
+        const usuarios = await Usuario.find({ estado: true })
+            .populate({
+                path: 'rol',
+                select: 'nombre'
+            });
+
+        for (const usuario of usuarios) {
+            for (const rol of usuario.rol) {
+                console.log({ rol });
+                if (rol.nombre === 'Jurado') {
+                    return usuarios;
+                }
+            }
+        }
+
+        res.json(usuarios);
+    } catch (error) {
+        res.json(error);
+    }
+}
+
+//Dividir usuario por rol estudiante
+exports.obtenerRolEstudiante = async(req, res) => {
+        try {
+            const usuarioEstudiante = await Usuario.find({ estado: true, rol: ['656ab1832166f185397306a9'] });
+            res.json(usuarioEstudiante);
+        } catch (error) {
+            res.json(error);
+        }
+    }
+    //Dividir usuario por rol jurado
+exports.obtenerRolJurado = async(req, res) => {
+    try {
+        const usuarioJurado = await Usuario.find({ estado: true, rol: ['656ab1922166f185397306ad'] });
+        res.json(usuarioJurado);
     } catch (error) {
         res.json(error);
     }

@@ -23,14 +23,14 @@ const ProyectoSchema = new Schema({
     director: {
         type: String
     },
-    codirecto: {
+    codirector: {
         type: String
     },
     proceso: {
         type: String,
         required: true
     },
-    lineaInvestigación: {
+    lineaInvestigacion: {
         type: String,
     },
     semilleroInvestigacion: {
@@ -45,12 +45,17 @@ const ProyectoSchema = new Schema({
         required: true
     },
     nota: {
-        type: Number,
-        required: true
+        type: Number
     },
     estado: {
         type: Boolean,
         default: true
+    },
+    comentario: {
+        type: String
+    },
+    formatosolicituddirect: {
+        type: String
     },
 });
 

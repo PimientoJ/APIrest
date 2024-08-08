@@ -5,14 +5,14 @@ const UsuarioSchema = new Schema({
         required: true
     },
     codigo: {
-        type: Number,
+        type: String,
         required: true
     },
-    rol: [{
+    rol: {
         type: Schema.Types.ObjectId,
         ref: 'Rol',
-        autopopulate: true
-    }],
+        autopopulate: false
+    },
     correo: {
         type: String,
         required: true

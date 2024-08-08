@@ -10,7 +10,8 @@ const autenticacionUsuario = async(req, res, next) => {
     }
     try {
         const token = strToken.split(" ")[1];
-        const palabras = "clavesecreta"
+        const palabras = "clavesecreta" //se debe cambiar, y usar en los ENV
+            // const palabras = process.env.JWT_PASS; // deberia funcionar igual
         const llave = jwt.verify(token, palabras);
         const usuario = await Usuario.findById(llave._id);
         if (!usuario) {

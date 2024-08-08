@@ -65,7 +65,6 @@ exports.ObtenerDatoProceso = async(req, res) => {
         if (req.params.idCal && req.params.idPro) {
             const idCal = req.params.idCal;
             const idPro = req.params.idPro;
-            console.log(idCal, "&", idPro);
             const calendario = await Calendario.findById(idCal);
 
             for (let index = 0; index < calendario.proceso.length; index++) {

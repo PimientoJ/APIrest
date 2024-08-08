@@ -10,7 +10,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3500/api/datosCalendario
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTdjNjk3OWY2MGNhNTAzNDljOTNhZDciLCJjb3JyZW8iOiJhZG1pbiIsImlhdCI6MTcwNDEyMzYxNywiZXhwIjoxNzA0MjEwMDE3fQ.Bqo3lAqF8ZCUTjCHiD7t2SlWP4EVDNVy_kxu0YS7f58
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTdjNjk3OWY2MGNhNTAzNDljOTNhZDciLCJjb3JyZW8iOiJhZG1pbiIsImlhdCI6MTcwOTU4NTYzNywiZXhwIjoxNzA5NjcyMDM3fQ.TqB3XApufmWnwD9eKIZo1lbm41wAEZZf8sIqDo071NA
 
 ---//----------------------------Procesos------------------------
 ###
@@ -31,7 +31,7 @@ Content-Type: application/json
 DELETE http://localhost:3500/api/eliminarProceso/656ea7177c0dde8fe2c27360/65947384aa7272d328ee2740
 
 ###
-GET http://localhost:3500/api/datoDelProceso/656ea7177c0dde8fe2c27360/65971c22e0d110e84241ffee
+GET http://localhost:3500/api/datoDelProceso/656ea7177c0dde8fe2c27360/65971b84e0d110e84241ffc8
 
 ###
 PUT  http://localhost:3500/api/actualizarProcesos/656ea7177c0dde8fe2c27360/65971b84e0d110e84241ffc8

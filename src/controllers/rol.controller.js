@@ -22,3 +22,12 @@ exports.agregarRol = async(req, res) => {
         res.json(error);
     }
 };
+exports.obtenerRol = async(req, res) => {
+    try {
+        const id = req.params.id;
+        const rol = await Rol.findById(id);
+        res.json(rol.nombre);
+    } catch (error) {
+        res.json(error);
+    }
+};

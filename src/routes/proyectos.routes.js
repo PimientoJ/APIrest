@@ -9,5 +9,11 @@ routerProyecto.put("/registarUsuarioProyecto/:id", ctrProyecto.agregarUsuarioPro
 routerProyecto.put("/actualizarProyecto/:id", ctrProyecto.actualizarProyecto);
 routerProyecto.delete("/eliminarProyecto/:id", ctrProyecto.eliminarProyecto);
 routerProyecto.get("/datosNombreUser/:nombre", ctrUser.obtenerNombresUsuario);
+routerProyecto.get("/datoproyecto/:id", ctrProyecto.obtenerDatoProyectoid);
+routerProyecto.get("/datoEstudianteproyecto/:id", ctrProyecto.obtenerDatoEstudianteProyecto);
+routerProyecto.get("/datoJuradoproyecto/:id", ctrProyecto.obtenerDatoJuradoProyecto);
+//routerProyecto.get("/nombreproyecto/:nombre", ctrProyecto.obtenerDatoProyectoPorNombre);
+routerProyecto.put("/juradoproyecto/:id", ctrProyecto.actualizarProyectoJurado);
+routerProyecto.get("/descargarArchivo/:id", ctrProyecto.descargarArchivo);
 
 module.exports = routerProyecto;

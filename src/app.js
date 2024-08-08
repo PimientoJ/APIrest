@@ -7,7 +7,6 @@ const routerUser = require("./routes/users.routes");
 const routerCalendar = require("./routes/calendars.routes");
 const routerRol = require("./routes/rols.routes");
 const routerProceso = require("./routes/procesos.routes");
-const routerEstudiante = require("./routes/estudiantes.routes");
 const routerProyecto = require("./routes/proyectos.routes");
 
 //Configure los archivos dotenv
@@ -39,7 +38,6 @@ app.use("/api/seira", routerUser);
 app.use("/api", routerCalendar);
 app.use("/api", routerRol);
 app.use("/api", routerProceso);
-app.use("/api", routerEstudiante);
 app.use("/api", routerProyecto);
 
 module.exports = app;

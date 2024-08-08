@@ -1,15 +1,12 @@
-const guardarArchivo = async(file, nombreArchivo, tipoArchivo) => {
+const guardarArchivo = async(file, nombreArchivo, documento, tipoArchivo) => {
 
-    const archivo = await file[nombreArchivo]; //Se parametriza con el nombre del documento
-    console.log(archivo);
+    const archivo = await file[documento]; //Se parametriza con el nombre del documento
     const resp = { isOk: false, error: null, nuevoNombre: null };
 
     if (archivo.mimetype == tipoArchivo) {
         //Guardar Archivo
         const ahora = Date.parse(Date());
-        console.log("ahora", ahora);
-        resp.nuevoNombre = ahora + ".pdf";
-
+        resp.nuevoNombre = nombreArchivo.replace(/ /g, "") + ahora + ".pdf";
         resp.error = await archivo.mv("./archivos/" + resp.nuevoNombre);
         if (resp.error) {
             return resp;
